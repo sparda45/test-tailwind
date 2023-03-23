@@ -37,3 +37,29 @@ window.addEventListener('click', function(e){
 
 
 });
+
+// darkmode toggle
+
+const darktoggle =  document.querySelector('#dark-toggle');
+const html = document.querySelector('html');
+
+darktoggle.addEventListener('click', function(){
+    if (darktoggle.checked) {
+        html.classList.add('dark');
+        localStorage.theme = 'dark';
+    }
+    else{
+        html.classList.remove('dark');
+        localStorage.theme = 'light';
+    }
+
+
+});
+
+// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    darktoggle.checked = true;
+  } else {
+    darktoggle.checked = false;
+  }
+
